@@ -1,0 +1,2062 @@
+@import './tokens.css';
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+    color: var(--color-ink);
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+}
+
+@layer components {
+  /* Scroll-reveal: content is visible by default (safe if JS never loads).
+     reveal.js opts elements into the hidden pre-animation state itself,
+     right before animating them back in — so a JS failure can never leave
+     content stuck invisible. */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform .25s var(--ease-out-expo), background-color .2s var(--ease-standard), color .2s var(--ease-standard), border-color .2s var(--ease-standard);
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: var(--color-hairline-strong);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .btn-on-dark.btn-secondary {
+    color: var(--color-paper);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+  .btn-on-dark.btn-secondary:hover {
+    color: var(--color-accent-bright);
+    border-color: var(--color-accent-bright);
+  }
+  .btn-accent {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .btn-accent:hover {
+    background: var(--color-accent-deep);
+    transform: translateY(-2px);
+  }
+
+  /* Pressed feedback: cancels the hover lift so a click reads as a tactile
+     push rather than the button staying floated while held down. */
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  /* Full-width button inside a narrow container (tier side panels, form
+     cards). The base .btn is nowrap with generous side padding, which is
+     right for a standalone button but makes a long label overflow a ~280px
+     panel. This variant lets the label wrap and centres it over both lines. */
+  .btn-block {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    text-wrap: balance;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.35;
+  }
+
+  .btn-arrow {
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .btn:hover .btn-arrow,
+  a:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .card-elevate {
+    transition: transform .35s var(--ease-out-expo), box-shadow .35s var(--ease-out-expo), border-color .3s var(--ease-standard);
+  }
+  .card-elevate:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-xl);
+    border-color: transparent;
+  }
+
+  .mega-link {
+    display: block;
+    font-size: 15.5px;
+    color: var(--color-ink-soft);
+    transition: color .2s var(--ease-standard);
+  }
+  .mega-link:hover {
+    color: var(--color-accent);
+  }
+
+  .drawer-link {
+    display: block;
+    padding: 13px 2px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .drawer-link.is-current {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .drawer-accordion {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .drawer-accordion summary {
+    padding: 13px 2px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    transition: color .2s var(--ease-standard);
+  }
+  .drawer-accordion summary:hover {
+    color: var(--color-accent);
+  }
+  .drawer-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+  .drawer-accordion-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 2px 14px 12px;
+  }
+  .drawer-accordion-body a {
+    padding: 8px 0;
+    font-size: 15.5px;
+    color: var(--color-ink-soft);
+    transition: color .2s var(--ease-standard);
+  }
+  .drawer-accordion-body a:hover {
+    color: var(--color-accent);
+  }
+
+  /* ---------- Nav: two color states ----------
+     Default = floating over a dark full-bleed hero (transparent, white text).
+     .is-scrolled, or any page without a dark hero, = solid paper bar. */
+  #site-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  #site-header .site-nav__logo,
+  #site-header .site-nav__link,
+  #site-header .site-nav__trigger,
+  #site-header .site-nav__toggle {
+    color: #fff;
+  }
+  #site-header .site-nav__link,
+  #site-header .site-nav__trigger {
+    color: rgba(255, 255, 255, 0.88);
+    transition: color .2s var(--ease-standard);
+  }
+  #site-header .site-nav__link:hover,
+  #site-header .site-nav__trigger:hover {
+    color: #fff;
+  }
+  #site-header .site-nav__link.is-current {
+    color: var(--color-accent-bright);
+    font-weight: 600;
+  }
+
+  /* The GSC wordmark, supplied as a black and a white PNG. Both are shipped
+     and swapped in CSS rather than recoloured with a filter, so the mark stays
+     exactly as drawn on either ground. Height-driven with width:auto, so the
+     ~2.9:1 mark can never be stretched. */
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+  }
+  .logo-img {
+    height: clamp(26px, 1.5rem + 0.7vw, 34px);
+    width: auto;
+    display: block;
+  }
+
+  /* Header default is transparent over a dark hero, so the white mark shows.
+     Once scrolled — or on any page without a dark hero — the bar turns paper
+     and the black mark takes over. Mirrors the nav link colour states. */
+  #site-header .logo-img--dark {
+    display: none;
+  }
+  #site-header.is-scrolled .logo-img--light,
+  body:not([data-hero-theme='dark']) #site-header .logo-img--light {
+    display: none;
+  }
+  #site-header.is-scrolled .logo-img--dark,
+  body:not([data-hero-theme='dark']) #site-header .logo-img--dark {
+    display: block;
+  }
+
+  /* The footer is always a dark band, so it only ever needs the white mark. */
+  footer .logo-img {
+    height: clamp(28px, 1.6rem + 0.8vw, 38px);
+  }
+
+  /* Footer links: same underline-draw micro-interaction as the primary nav,
+     so hover quality feels consistent site-wide instead of footer being a
+     plain color-swap while nav gets the richer treatment. Colors are the
+     on-dark pair (footer is always a dark band), matching the muted-white/
+     accent-bright convention used by every other dark section. */
+  .footer-link {
+    position: relative;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 15.5px;
+    transition: color .2s var(--ease-standard);
+    width: fit-content;
+  }
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
+  }
+  .footer-link:hover {
+    color: var(--color-accent-bright);
+  }
+  .footer-link:hover::after {
+    right: 0;
+    opacity: .6;
+  }
+
+  /* Nav link hover: a thin underline draws in from the left. */
+  .site-nav__link,
+  .site-nav__trigger {
+    position: relative;
+    font-size: var(--fs-nav-link);
+  }
+  .site-nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transition: right .3s var(--ease-out-expo), opacity .3s var(--ease-standard);
+  }
+  .site-nav__link:hover::after {
+    right: 0;
+    opacity: .7;
+  }
+
+  #site-header .site-nav__cta {
+    background: #fff;
+    color: var(--color-ink);
+    padding: 17px 30px;
+    font-size: var(--fs-nav-cta);
+  }
+  #site-header .site-nav__cta:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  #site-header.is-scrolled,
+  body:not([data-hero-theme='dark']) #site-header {
+    background: rgba(250, 250, 248, 0.95);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom-color: var(--color-hairline);
+    box-shadow: var(--shadow-card-sm);
+  }
+  #site-header.is-scrolled .site-nav__logo,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__logo,
+  #site-header.is-scrolled .site-nav__toggle,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__toggle {
+    color: var(--color-ink);
+  }
+  #site-header.is-scrolled .site-nav__link,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link,
+  #site-header.is-scrolled .site-nav__trigger,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__trigger {
+    color: var(--color-ink-soft);
+  }
+  #site-header.is-scrolled .site-nav__link:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link:hover,
+  #site-header.is-scrolled .site-nav__trigger:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__trigger:hover {
+    color: var(--color-accent);
+  }
+  #site-header.is-scrolled .site-nav__link.is-current,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__link.is-current {
+    color: var(--color-accent);
+  }
+  #site-header.is-scrolled .site-nav__cta,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  #site-header.is-scrolled .site-nav__cta:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  #site-header.is-scrolled #nav-inner {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  #site-header.is-scrolled .site-nav__cta {
+    padding: 14px 26px;
+  }
+
+  /* ---------- Hero carousel ---------- */
+
+  /* Cinematic letterboxing for centered text: dark top (nav legibility) and
+     bottom (controls legibility) framing a gently-darkened middle band —
+     even enough that the footage still reads, without crushing contrast.
+     Layered with a soft radial vignette so the frame's edges recede and
+     the eye settles on the centered text — a lens-like falloff rather than
+     a flat rectangle of darkening. */
+  .hero-scrim {
+    background-image:
+      radial-gradient(ellipse at center, rgba(9, 11, 10, 0) 55%, rgba(9, 11, 10, .32) 100%),
+      linear-gradient(
+        180deg,
+        rgba(9, 11, 10, .58) 0%,
+        rgba(9, 11, 10, .22) 22%,
+        rgba(9, 11, 10, .3) 50%,
+        rgba(9, 11, 10, .22) 78%,
+        rgba(9, 11, 10, .6) 100%
+      );
+  }
+
+  /* Unifies the hero videos toward one restrained, cinematic grade —
+     independent of each clip's own native color/exposure — rather than
+     leaving raw, unedited footage tones directly on screen. */
+  [data-hero-video] {
+    filter: saturate(0.92) contrast(1.05);
+  }
+
+  .hero-eyebrow {
+    display: block;
+    margin-bottom: clamp(20px, 1.5vw, 28px);
+    font-family: var(--font-body);
+    font-size: var(--fs-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-bright);
+  }
+
+  /* max-width in ch (relative to this element's own font-size) so line
+     breaks stay proportionally the same as the fluid font-size scales —
+     a fixed px/rem cap would rewrap to more lines on large screens as the
+     type grows, which is exactly what this is avoiding. */
+  /* The hero headline is deliberately exempt from the bold, tight heading
+     rule the rest of the site follows: light weight at display size is the
+     established look of this section, and it is what carries across all four
+     slides. Do not fold this into the h1-h4 treatment. */
+  .hero-headline {
+    font-family: var(--font-hero);
+    font-weight: 300;
+    color: #fff;
+    font-size: var(--fs-hero-headline);
+    line-height: 1.14;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+    max-width: 17ch;
+    margin: 0 0 clamp(28px, 3vw, 44px);
+  }
+
+  .btn-hero {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    padding: 18px 38px;
+    transition: transform .25s var(--ease-out-expo), background-color .2s var(--ease-standard), color .2s var(--ease-standard), border-color .2s var(--ease-standard), box-shadow .3s var(--ease-standard);
+  }
+  .btn-hero:hover {
+    background: #fff;
+    color: var(--color-ink);
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -8px rgba(255, 255, 255, 0.35);
+  }
+
+  .hero-play-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    flex-shrink: 0;
+    transition: border-color .2s var(--ease-standard), background-color .2s var(--ease-standard);
+  }
+  .hero-play-toggle:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Swiper's own pagination CSS ships unlayered, which always wins over
+     @layer rules regardless of specificity — so bullet color is themed
+     through Swiper's own custom properties rather than fighting that. */
+  .hero-swiper {
+    --swiper-pagination-color: #fff;
+    --swiper-pagination-bullet-inactive-color: #fff;
+    --swiper-pagination-bullet-inactive-opacity: 0.3;
+  }
+  .hero-pagination .swiper-pagination-bullet {
+    position: relative;
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    opacity: 1;
+    margin: 0 4px !important;
+    overflow: hidden;
+  }
+  .hero-pagination-fill {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: #fff;
+    transition: width .1s linear;
+  }
+
+  .hero-scroll-cue {
+    position: absolute;
+    right: 2rem;
+    bottom: 2.25rem;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    animation: hero-cue-bob 2.4s var(--ease-standard) infinite;
+  }
+  @media (min-width: 640px) {
+    .hero-scroll-cue {
+      display: flex;
+    }
+  }
+  @keyframes hero-cue-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll-cue {
+      animation: none;
+    }
+  }
+
+  /* ---------- Shared section patterns ---------- */
+  .section-head {
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+    scroll-margin-top: 6rem;
+  }
+  .section-head h2 {
+    font-size: clamp(1.75rem, 1.15rem + 2.4vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-head p {
+    color: var(--color-ink-soft);
+    font-size: 16.5px;
+  }
+
+  /* Dark CTA banner heading (final-cta) — fluid so it doesn't rely on
+     sm:/lg: breakpoint jumps the way the raw utility chain did. */
+  .cta-heading {
+    font-size: clamp(1.875rem, 1.3rem + 2.8vw, 2.875rem);
+    line-height: 1.1;
+  }
+
+  /* Small pill labels (case-study process flow). */
+  .pill-label {
+    font-size: clamp(0.84rem, 0.8rem + 0.15vw, 0.875rem);
+  }
+
+  /* ---------- Interior-page hero (static, non-video pages) ----------
+     Reusable across Services/Solutions/Case Studies/About/Contact so every
+     page opens on the same fluid-typography treatment as Home, without
+     inheriting Home's video-hero-specific sizing (.hero-headline is much
+     larger and tuned for a full-bleed video background). */
+  .page-hero-heading {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-size: clamp(2.375rem, 1.7rem + 2.5vw, 3.75rem);
+  }
+
+  /* Short "building statement" lines under a hero heading — semibold,
+     muted-to-ink progression (see services-hero, exec-summary). */
+  .lede-statement {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.1875rem);
+  }
+
+  /* Sub-section heading — one step down from .section-head h2, used where
+     a heading sits in a constrained column rather than full-width centered
+     (services category headers, the services-process heading). */
+  .subsection-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: clamp(1.625rem, 1.4rem + 1vw, 2rem);
+  }
+
+  /* Hairline grid: the 1px seams are drawn by a ring around each cell rather
+     than by a grey container showing through the gaps. Visually identical for
+     a grid that fills every slot, but a partial last row now reads as empty
+     space instead of a stray grey block — so item counts don't have to divide
+     evenly into the column count at every breakpoint. */
+  .grid-hairline {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-hairline);
+  }
+  .grid-hairline > * {
+    box-shadow: 0 0 0 1px var(--color-hairline);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--fs-stat-figure);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+
+  /* ---------- Card system ----------
+     Two families share their foundation via grouped selectors: flat
+     grid-hairline cells (bg only — the hairline grid itself draws the
+     1px seams) and bordered floating cards. Each card class below then
+     only carries what's actually unique to it (padding, layout, its own
+     hover behavior). */
+  .challenge-card,
+  .outcome-card,
+  .why-card,
+  .industry-card {
+    background: var(--color-paper-raised);
+  }
+  .pillar-card,
+  .insight-card,
+  .service-card {
+    border: 1px solid var(--color-hairline);
+    background: var(--color-paper-raised);
+  }
+  .outcome-card .n,
+  .industry-card .n {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .challenge-card,
+  .industry-card {
+    transition: background-color .3s var(--ease-standard);
+  }
+  .challenge-card:hover,
+  .industry-card:hover {
+    background: var(--color-accent-tint);
+  }
+
+  .challenge-card {
+    padding: 30px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    scroll-margin-top: 6rem;
+  }
+  .challenge-card .txt {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--color-ink);
+  }
+  .challenge-card .arrow {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .challenge-card:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .outcome-card {
+    padding: 30px 28px;
+  }
+  .outcome-card .n {
+    color: var(--color-accent);
+  }
+  .outcome-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .pillar-card {
+    padding: 40px 34px;
+    transition: border-color .3s var(--ease-standard), transform .3s var(--ease-out-expo);
+  }
+  .pillar-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+  }
+  .pillar-card .link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 2px;
+    transition: color .3s var(--ease-standard), border-color .3s var(--ease-standard);
+  }
+  .pillar-card:hover .link {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .why-card {
+    padding: 30px 32px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .why-card .num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Hover-reveal: title sits low against a bottom-anchored flex column, with the
+     description collapsed to zero height so its reserved space reads as empty
+     room above the title, not dead space below it. On hover the description
+     grows from 0 to its natural height (grid-rows trick — no fixed max-height to
+     guess, no clipping), which pushes the bottom-pinned title upward as the text
+     reveals beneath it. Card/box height stays put throughout. */
+  .why-card .card-reveal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 6rem;
+  }
+  .pillar-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 300px;
+    transition: border-color .3s var(--ease-standard), transform .3s var(--ease-out-expo), background-color .3s var(--ease-standard);
+  }
+  @media (min-width: 640px) {
+    .pillar-card { min-height: 550px; }
+  }
+  @media (min-width: 1024px) {
+    .pillar-card { min-height: 300px; }
+  }
+
+  .card-reveal {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .55s var(--ease-out-expo);
+  }
+  .card-reveal > p {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity .3s var(--ease-standard);
+  }
+  .why-card:hover .card-reveal,
+  .why-card:focus-within .card-reveal,
+  .pillar-card:hover .card-reveal,
+  .pillar-card:focus-within .card-reveal {
+    grid-template-rows: 1fr;
+  }
+  .why-card:hover .card-reveal > p,
+  .why-card:focus-within .card-reveal > p,
+  .pillar-card:hover .card-reveal > p,
+  .pillar-card:focus-within .card-reveal > p {
+    opacity: 1;
+    transition: opacity .4s var(--ease-standard) .15s;
+  }
+
+  .why-card {
+    transition: background-color .3s var(--ease-standard);
+  }
+  .why-card:hover {
+    background: var(--color-accent-tint);
+  }
+
+  .industry-card {
+    padding: 36px 26px;
+    scroll-margin-top: 6rem;
+  }
+  .industry-card .n {
+    color: var(--color-muted);
+    margin-bottom: 16px;
+  }
+
+  .insight-card {
+    padding: 34px;
+  }
+  .insight-card .cat {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .lead-avatar {
+    aspect-ratio: 1;
+    width: 100%;
+    border-radius: 4px;
+    background: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-bright);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .framework-node {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: #1E2226;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-accent-bright);
+    transition: background-color .3s var(--ease-standard), border-color .3s var(--ease-standard);
+    font-variant-numeric: tabular-nums;
+  }
+  .framework-step:hover .framework-node {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .section-head.on-dark h2 {
+    color: #fff;
+  }
+  .section-head.on-dark p {
+    color: #B9BEC3;
+  }
+
+  /* ---------- Services page ---------- */
+  .service-tab {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-hairline-strong);
+    color: var(--color-ink-soft);
+    transition: background-color .25s var(--ease-standard), color .25s var(--ease-standard), border-color .25s var(--ease-standard);
+  }
+  .service-tab:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .service-tab.is-active {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-color: var(--color-ink);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 3px;
+    padding: 30px 26px;
+    scroll-margin-top: 9rem;
+  }
+  .service-card__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    stroke-width: 1.75;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 16px;
+    color: var(--color-ink-soft);
+    line-height: 1.6;
+  }
+
+  .framework-mini-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--color-ink);
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    padding: 12px 20px;
+    border-radius: 9999px;
+  }
+  .framework-mini-step span {
+    font-size: 12px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Solutions "How We Deliver" chain — same circle-node + connecting-line
+     language as .framework-node/.framework-step (see Framework.tsx), rebuilt
+     for a light background and a vertical run instead of a horizontal one. */
+  .process-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .process-node {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 1px 2px rgba(20, 23, 26, 0.04);
+    transition: background-color .3s var(--ease-standard), border-color .3s var(--ease-standard), color .3s var(--ease-standard), transform .3s var(--ease-out-expo);
+  }
+  .process-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15.5px;
+    color: var(--color-ink);
+    transition: color .3s var(--ease-standard);
+  }
+  .process-step:hover .process-node {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .process-step:hover .process-label {
+    color: var(--color-accent);
+  }
+
+  /* Breadcrumb trail — every page below the root carries one so there is
+     always a visible way back up the hierarchy. Separators are drawn in CSS
+     rather than markup so they stay out of the accessibility tree. */
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+  .breadcrumb a {
+    color: var(--color-muted);
+    transition: color .2s var(--ease-standard);
+  }
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+  .breadcrumb [aria-current='page'] {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .breadcrumb li + li::before {
+    content: '/';
+    margin: 0 10px;
+    color: var(--color-hairline-strong);
+  }
+
+  /* ---------- Challenge sub-pages (/solutions/<challenge>/) ----------
+     One shared vocabulary so all nine challenge pages read as the same
+     template with different copy. Every card here is a flat cell designed
+     to sit inside .grid-hairline — the grid draws the 1px seams, the card
+     only carries padding and type. */
+  .symptom-card {
+    background: var(--color-paper-raised);
+    padding: 24px 28px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .symptom-card .mark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .symptom-card p {
+    font-size: 16.5px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    line-height: 1.55;
+  }
+
+  /* The workhorse cell: a single statement (a constraint, a root cause, an
+     assessment dimension). .is-centered is the compact variant used where
+     the copy is a short label rather than a sentence. */
+  .tile-card {
+    background: var(--color-paper-raised);
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .tile-card.is-centered {
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-ink);
+  }
+
+  /* Titled variant of .tile-card — a heading plus a line of explanation. */
+  .detail-card {
+    background: var(--color-paper-raised);
+    padding: 30px 28px;
+  }
+  .detail-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+    margin-bottom: 8px;
+  }
+  .detail-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+
+  /* Compare panels — what gets blamed vs. what's actually true. */
+  .compare-col {
+    background: var(--color-paper-raised);
+    padding: 34px 32px;
+  }
+  .compare-col h3 {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .compare-col li {
+    font-size: 17px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .compare-col li:last-child {
+    border-bottom: none;
+  }
+  .compare-col.is-symptom h3 {
+    color: var(--color-muted);
+  }
+  .compare-col.is-symptom li {
+    color: var(--color-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-hairline-strong);
+  }
+  .compare-col.is-cause h3 {
+    color: var(--color-accent);
+  }
+  .compare-col.is-cause li {
+    color: var(--color-ink-soft);
+    font-weight: 500;
+  }
+
+  /* Pill chips — the "here's the sequence" strips. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.35;
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-hairline-strong);
+    background: var(--color-paper-raised);
+    color: var(--color-ink-soft);
+  }
+  .chip-on-dark {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: #D6D9DC;
+  }
+
+  /* The single emphasised line that closes a dark section. */
+  .statement-line {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.125rem, 0.95rem + 0.85vw, 1.5rem);
+    line-height: 1.5;
+  }
+
+  /* Who-we-work-with list — hairline-separated, no bullets. */
+  .who-list li {
+    font-size: 16.5px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .who-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* ---------- Framework page (/framework/) ----------
+     The five-phase deep dive. Each phase is a bordered block rather than a
+     grid-hairline cell, because a phase carries far more inside it than a
+     card does — heading, intro, tag cloud, objective and a named output. */
+  .phase-block {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 32px 26px;
+  }
+  .phase-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 26px;
+  }
+  .phase-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    line-height: 1;
+    padding-top: 4px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .phase-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  /* The objective/output column separates with a rule above it when stacked,
+     and beside it once there's room for two columns. */
+  .phase-side {
+    border-top: 1px solid var(--color-hairline);
+    padding-top: 28px;
+  }
+  .phase-output {
+    background: var(--color-paper-sunken);
+    border-radius: var(--radius-tag);
+    padding: 16px 20px;
+  }
+  .phase-output span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 6px;
+  }
+  .phase-output p {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+  @media (min-width: 640px) {
+    .phase-block {
+      padding: 40px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .phase-block {
+      padding: 48px 52px;
+    }
+    .phase-cols {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 48px;
+    }
+    .phase-side {
+      border-top: none;
+      border-left: 1px solid var(--color-hairline);
+      padding-top: 0;
+      padding-left: 44px;
+    }
+  }
+
+  /* Scorecard cell — a metric family and the measures under it. */
+  .score-card {
+    background: var(--color-paper-raised);
+    padding: 30px 28px;
+  }
+  .score-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+    margin-bottom: 12px;
+  }
+  .score-card li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .score-card li:last-child {
+    border-bottom: none;
+  }
+
+  /* Transformation path — a situation and the chain of work it implies. */
+  .path-row {
+    background: var(--color-paper-raised);
+    padding: 28px 26px;
+  }
+  .path-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+  .path-chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Problem-to-outcome flow — a single vertical column at every width, since
+     the whole point is that each step follows from the one above it. */
+  .flow-step {
+    width: 100%;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 22px 26px;
+    text-align: center;
+  }
+  .flow-step .ft {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+  }
+  .flow-step .fd {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    margin-top: 6px;
+  }
+  .flow-step.is-outcome {
+    background: var(--color-accent-tint);
+    border-color: var(--color-accent);
+  }
+
+  /* ---------- Founder page (/founder/) ----------
+     A scaled-up relative of .lead-avatar: same ink square and bright initial
+     the leadership grid uses, sized to anchor the hero. */
+  .portrait-frame {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 420px;
+    border-radius: var(--radius-card);
+    background: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .portrait-frame .initial {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(4rem, 3rem + 6vw, 7rem);
+    line-height: 1;
+    color: var(--color-accent-bright);
+  }
+  .portrait-frame .corner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 22px 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    /* Same reason as the caption below: the label sits over the top of a
+       photograph, and this one lands on a bright studio background. The strip
+       spans the full width so the gradient has somewhere to fade, leaving the
+       text where it always sat. */
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.6) 0%,
+      rgb(0 0 0 / 0) 100%
+    );
+  }
+  .portrait-frame .caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 44px 22px 22px;
+    /* The frame holds a photograph, so the caption sits over whatever the
+       bottom of that photograph happens to be — a white shirt swallowed the
+       role line entirely. This scrim keeps both lines legible over any image,
+       and reads as nothing over a frame whose background is still solid ink.
+       It also replaces the hairline that used to separate the caption: over a
+       photograph that rule read as a seam cutting across the subject. */
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / 0.78) 0%,
+      rgb(0 0 0 / 0.55) 55%,
+      rgb(0 0 0 / 0) 100%
+    );
+  }
+  .portrait-frame .caption .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: #fff;
+  }
+  .portrait-frame .caption .role2 {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 3px;
+  }
+
+  /* Pricing card for the 1:1 session offer. */
+  .pricing-card {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 36px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-card-md);
+  }
+  .pricing-card .pc-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+  }
+  .pricing-card .pc-price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--fs-stat-figure);
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: 12px 0 8px;
+  }
+  .pricing-card .pc-price .ph {
+    color: var(--color-accent);
+  }
+  .pricing-card .pc-meta {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin-bottom: 18px;
+  }
+  .pricing-card .pc-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+    max-width: 420px;
+    margin: 0 auto 26px;
+  }
+  .pricing-card .pc-note {
+    font-size: 12.5px;
+    color: var(--color-muted);
+    margin-top: 16px;
+  }
+
+  /* Closing signature block. */
+  .signature .sig-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: #fff;
+  }
+  .signature .sig-role {
+    font-size: 13.5px;
+    color: var(--color-accent-bright);
+    margin-top: 4px;
+  }
+  .signature .sig-line {
+    font-size: 16px;
+    color: #9BA1A7;
+    margin-top: 12px;
+  }
+
+  /* ---------- Shared across R&D, Industries, Leadership, Alliances ---------- */
+
+  /* A list of questions the work starts from. Hairline-separated rather than
+     bulleted — these read as a stack of prompts, not a checklist. */
+  .q-list {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .q-list p {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+    line-height: 1.5;
+    color: var(--color-ink);
+    padding: 14px 0 14px 22px;
+    border-bottom: 1px solid var(--color-hairline);
+    position: relative;
+  }
+  .q-list p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 8px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+  .q-list p:last-child {
+    border-bottom: none;
+  }
+
+  /* Fit / qualifier item with a check mark. */
+  .check-item {
+    background: var(--color-paper-raised);
+    padding: 20px 24px;
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .check-item .check {
+    color: var(--color-accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Numbered research area / focus cell. */
+  .area-card {
+    background: var(--color-paper-raised);
+    padding: 28px 26px;
+  }
+  .area-card .anum {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .area-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-ink);
+    line-height: 1.35;
+  }
+
+  /* White-paper row — same interaction language as .challenge-card. */
+  .paper-card {
+    background: var(--color-paper-raised);
+    padding: 26px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    transition: background-color .3s var(--ease-standard);
+  }
+  .paper-card:hover {
+    background: var(--color-accent-tint);
+  }
+  .paper-card .pnum {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .paper-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+    margin-bottom: 4px;
+  }
+  .paper-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .paper-card .arrow {
+    transition: transform .3s var(--ease-out-expo);
+  }
+  .paper-card:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  /* Anchor pill strip (industries jump nav). */
+  .anchor-pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-hairline-strong);
+    background: var(--color-paper-raised);
+    color: var(--color-ink-soft);
+    transition: color .2s var(--ease-standard), border-color .2s var(--ease-standard), background-color .2s var(--ease-standard);
+  }
+  .anchor-pill:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: var(--color-accent-tint);
+  }
+
+  /* Rich industry block — heading, promise, description, tags, evidence. */
+  .industry-block {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 32px 26px;
+    scroll-margin-top: 7rem;
+  }
+  .industry-block .ic-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .industry-block .promise {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-accent);
+    margin: 14px 0 12px;
+  }
+  .industry-block .desc {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+  .evidence-box {
+    background: var(--color-paper-sunken);
+    border-radius: var(--radius-tag);
+    padding: 22px 24px;
+  }
+  .evidence-box .case-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+  }
+  .evidence-box p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+  .evidence-box .case-note {
+    display: block;
+    font-size: 12.5px;
+    color: var(--color-muted);
+    margin-top: 12px;
+  }
+  .inline-link {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .inline-link:hover {
+    text-decoration: underline;
+  }
+  /* Same slot and rhythm as a real inline link, but muted and inert — used
+     where the destination doesn't exist yet (placeholder leadership cards),
+     so the cards balance without offering a link that goes nowhere. Swap the
+     span for an <a href> and drop this class once the page is live. */
+  .inline-link.is-pending {
+    color: var(--color-muted);
+    cursor: default;
+  }
+  .inline-link.is-pending:hover {
+    text-decoration: none;
+  }
+  @media (min-width: 640px) {
+    .industry-block {
+      padding: 40px 38px;
+    }
+  }
+
+  /* Role split — who does what in an alliance engagement. */
+  .role-box {
+    background: var(--color-paper-sunken);
+    border-radius: var(--radius-tag);
+    padding: 20px 22px;
+  }
+  .role-box.is-grow {
+    background: var(--color-accent-tint);
+  }
+  .role-box span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+  .role-box.is-grow span {
+    color: var(--color-accent-deep);
+  }
+  .role-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+
+  /* Alliance identity panel. */
+  .alliance-visual {
+    background: var(--color-ink);
+    border-radius: var(--radius-card);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .alliance-visual .av-mark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+    line-height: 1;
+    color: var(--color-accent-bright);
+    display: block;
+    margin-bottom: 18px;
+  }
+  .alliance-visual .av-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+  }
+  .alliance-visual .av-tagline {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #9BA1A7;
+    margin-top: 8px;
+  }
+
+  /* Routing row — problem type to the party that handles it. */
+  .route-row {
+    background: var(--color-paper-raised);
+    padding: 20px 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+  .route-row .rr-said {
+    font-size: 16.5px;
+    color: var(--color-ink-soft);
+    flex: 1 1 180px;
+  }
+  .route-row .rr-dest {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+  }
+
+  /* ---------- White papers (/rnd/<paper>/) ----------
+     Long-form research documents. All five share one structure, so the
+     vocabulary here is deliberately small and reused across every paper. */
+  .paper-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--color-muted);
+  }
+  .paper-meta .dot {
+    color: var(--color-hairline-strong);
+  }
+
+  /* Small badge that marks whose framework a section describes. */
+  .tag-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-tint);
+    color: var(--color-accent-deep);
+  }
+  .tag-badge.is-external {
+    background: var(--color-paper-sunken);
+    color: var(--color-muted);
+  }
+
+  /* Callout block — executive summary, framework chain, external evidence. */
+  .callout {
+    border-radius: var(--radius-card);
+    padding: 26px 28px;
+  }
+  .callout p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+  }
+  .callout p + p {
+    margin-top: 14px;
+  }
+  .callout.is-summary {
+    background: var(--color-accent-tint);
+  }
+  .callout.is-summary p {
+    color: var(--color-accent-deep);
+    font-size: 16.5px;
+  }
+  .callout.is-neutral {
+    background: var(--color-paper-sunken);
+  }
+  .callout.is-bordered {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+  }
+  /* The named chain a framework reduces to — set in display type so it reads
+     as the paper's central idea rather than body copy. */
+  .callout .chain-line {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1rem, 0.92rem + 0.4vw, 1.1875rem);
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+
+  /* Numbered dimension inside a framework list. */
+  .chain-item {
+    background: var(--color-paper-raised);
+    padding: 24px 26px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .chain-item .cnum {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .chain-item h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-ink);
+    margin-bottom: 5px;
+  }
+  .chain-item p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+
+  /* Cited source row. */
+  .source-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .source-item:last-child {
+    border-bottom: none;
+  }
+  .source-item .si-text {
+    font-size: 16.5px;
+    color: var(--color-ink-soft);
+  }
+  .source-item .si-text strong {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-right: 10px;
+  }
+  .source-item .si-link {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+  .source-item .si-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------- Strategy sessions (/strategy/) ----------
+     Five engagement tiers plus a tabbed booking area. */
+  .eng-card {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 30px 26px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  /* The entry-level tier is the one most founders should start with, so it
+     carries the accent border the other tiers don't. */
+  .eng-card.is-featured {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-card-md);
+  }
+  /* The top two tiers are application-only — the dark treatment separates
+     them from the tiers you can simply book. */
+  .eng-card.is-selective {
+    background: var(--color-ink);
+    border-color: transparent;
+  }
+  .eng-card.is-selective .eng-num,
+  .eng-card.is-selective .eng-meta {
+    color: #9BA1A7;
+  }
+  .eng-card.is-selective h3,
+  .eng-card.is-selective .eng-price {
+    color: #fff;
+  }
+  .eng-card.is-selective .eng-for,
+  .eng-card.is-selective .eng-note {
+    color: #9BA1A7;
+  }
+  .eng-card.is-selective .eng-side {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .eng-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .eng-for {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin-bottom: 22px;
+  }
+  .eng-note {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin-top: 16px;
+  }
+  .eng-side {
+    background: var(--color-paper-sunken);
+    border-radius: var(--radius-tag);
+    padding: 24px 22px;
+    text-align: center;
+    align-self: start;
+  }
+  .eng-price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    line-height: 1.15;
+    color: var(--color-ink);
+  }
+  .eng-price .range {
+    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  }
+  .eng-meta {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin: 10px 0 20px;
+  }
+  /* Tiers that don't publish a price open on the meta line, so it shouldn't
+     carry the top margin that exists to sit it under .eng-price. */
+  .eng-side .eng-meta:first-child {
+    margin-top: 0;
+  }
+  .eng-leave li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    padding: 8px 0 8px 20px;
+    position: relative;
+  }
+  .eng-leave li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 8px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+  @media (min-width: 1024px) {
+    .eng-card {
+      grid-template-columns: 1fr 280px;
+      gap: 40px;
+      padding: 40px 38px;
+    }
+  }
+
+  /* "I have this problem" → the tier that fits it. */
+  .decide-row {
+    background: var(--color-paper-raised);
+    padding: 22px 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+  .decide-row .d-said {
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+    flex: 1 1 240px;
+  }
+  .decide-row .d-answer {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--color-ink);
+  }
+  .decide-row .d-answer .price {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-top: 3px;
+  }
+
+  /* Booking tab bar. */
+  .booking-tab {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.35;
+    padding: 12px 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-hairline-strong);
+    background: var(--color-paper-raised);
+    color: var(--color-ink-soft);
+    cursor: pointer;
+    transition: color .2s var(--ease-standard), border-color .2s var(--ease-standard), background-color .2s var(--ease-standard);
+  }
+  .booking-tab:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .booking-tab[aria-selected='true'] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Form controls — same visual language as the contact form, extracted so
+     the long booking forms don't repeat a utility chain on every field. */
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%;
+    border-radius: var(--radius-tag);
+    border: 1px solid var(--color-hairline-strong);
+    background: var(--color-paper);
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-ink);
+    transition: border-color .2s var(--ease-standard), box-shadow .2s var(--ease-standard);
+  }
+  .form-input::placeholder {
+    color: var(--color-muted);
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-accent-tint);
+  }
+  textarea.form-input {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+/*
+  Dark bands carry the particle texture instead of flat ink.
+
+  Deliberately unlayered so it wins over Tailwind's `bg-ink` utility without
+  an !important — the utility still supplies the background-color underneath,
+  which is both the fallback before the image loads and the colour the texture
+  fades into at its edges.
+
+  The gradient on top is not decoration: it holds the band dark enough that
+  white copy keeps its contrast wherever the image's teal glow happens to land
+  after `cover` crops it, which varies with each band's height.
+*/
+.bg-ink,
+.bg-accent-deep {
+  background-image:
+    linear-gradient(rgba(20, 23, 26, 0.55), rgba(20, 23, 26, 0.55)),
+    url('/framee.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* The hero paints its own full-bleed still over the top, so the texture would
+   never be seen there — skip the extra decode. */
+#hero.bg-ink {
+  background-image: none;
+}

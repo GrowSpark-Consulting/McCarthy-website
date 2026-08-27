@@ -1,0 +1,47 @@
+{
+  "name": "grow-spark-consulting",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Grow Spark Consulting — AI & Digital Transformation Consultancy website (Next.js)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "migrate": "node scripts/migrate.mjs",
+    "migrate:status": "node scripts/migrate.mjs --status",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "hubspot:setup": "node --env-file=.env.local scripts/hubspot-setup.mjs",
+    "hubspot:backfill": "node --env-file=.env.local scripts/hubspot-backfill.mjs"
+  },
+  "dependencies": {
+    "@hubspot/api-client": "^14.0.1",
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.18",
+    "lucide-react": "^0.469.0",
+    "next": "^16.3.1",
+    "nodemailer": "^9.0.5",
+    "postgres": "^3.4.9",
+    "razorpay": "^2.9.8",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "server-only": "^0.0.1",
+    "swiper": "^14.0.7",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^26.2.0",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "autoprefixer": "^10.4.20",
+    "playwright": "^1.62.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

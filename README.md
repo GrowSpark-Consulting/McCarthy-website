@@ -1,0 +1,35 @@
+# Grow Spark Consulting
+
+Marketing site for Grow Spark Consulting — Next.js (App Router) + TypeScript + React, Tailwind CSS v4, GSAP/Lenis/Swiper. 27 static routes, no backend.
+
+## Getting started
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Next dev server (React Strict Mode on) |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run typecheck` | `tsc --noEmit` |
+
+## Layout
+
+```
+app/            routes — (home) serves /, (site) serves the other 26
+components/
+  layout/       Nav, Footer, HtmlShell
+  sections/     30 page sections, all Server Components
+  effects/      client-side behaviour: Lenis, GSAP, Swiper, tabs
+lib/            shared constants
+styles/         tokens.css + base.css (Tailwind v4 @theme)
+public/         logos, favicon, hero videos, robots.txt
+scripts/        regression suites
+```
+
+See [CLAUDE.md](CLAUDE.md) for architecture notes, the deliberate form behaviour, and how to run the regression suites.
