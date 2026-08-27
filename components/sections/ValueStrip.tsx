@@ -12,7 +12,7 @@ export default function ValueStrip() {
         <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8 text-center" data-reveal="">
           {' '}
           <p className="font-display font-bold text-accent-deep text-[clamp(1rem,0.75rem+1.4vw,1.25rem)] leading-relaxed max-w-[760px] mx-auto">
-            {' '} Every transformation is measured against one standard — does it increase revenue, profit, cash flow, or enterprise value? {' '}
+            {' '} We don&apos;t sell AI tools. We engineer AI into the business. {' '}
           </p>
           {' '}
         </div>

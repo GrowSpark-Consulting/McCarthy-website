@@ -1,8 +1,8 @@
 /**
- * Transcribed from sections/outcomes.html by scripts/html-to-tsx.py.
- * Server Component: the source partial carries no behaviour of its own,
- * so nothing here needs the browser. Markup, classes, ids, data
- * attributes and content are unchanged from the source.
+ * The "FLAGSHIP OFFER" AI Transformation Assessment from index-7.html — the
+ * intro, the "We Assess" list (9 items) and the "You Receive" list (6
+ * items), side by side as in the source's own twocol layout. Uses the
+ * existing check-item vocabulary (base.css) for both lists.
  */
 export default function Outcomes() {
   return (
@@ -14,100 +14,79 @@ export default function Outcomes() {
           <div className="section-head" data-reveal="">
             {' '}
             <span className="eyebrow block mb-3.5">
-              The Impact
+              Flagship Offer
             </span>
             {' '}
             <h2>
-              Business Outcomes We Deliver
+              Before you buy AI, find where it matters.
             </h2>
             {' '}
             <p>
-              Before you learn about our process, here's what it's built to achieve.
+              The McCarthy AI Transformation Assessment™ is a structured assessment of your processes, systems, people and data — identifying the highest-value AI and automation opportunities, with a prioritised roadmap to execution.
             </p>
             {' '}
           </div>
           {' '}
-          <div className="grid-hairline grid-cols-1 sm:grid-cols-3" data-reveal="">
+          <div className="flex justify-center mb-14" data-reveal="">
+            <a href="/strategy/" className="btn btn-primary">
+              Book Your AI Transformation Assessment
+            </a>
+          </div>
+          {' '}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-12" data-reveal="">
             {' '}
-            <div className="outcome-card">
-              <span className="n">
-                01
-              </span>
-              <h3>
-                Revenue Growth
+            <div>
+              {' '}
+              <h3 className="subsection-heading mb-5">
+                We Assess
               </h3>
+              {' '}
+              <ul className="flex flex-col gap-2.5">
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Business processes</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Revenue and growth workflows</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Operations</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Customer experience</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Data and knowledge</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Technology and systems</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Automation and AI agent opportunities</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Workforce readiness</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>AI governance and security</span></li>
+                {' '}
+              </ul>
+              {' '}
             </div>
             {' '}
-            <div className="outcome-card">
-              <span className="n">
-                02
-              </span>
-              <h3>
-                Operational Excellence
+            <div>
+              {' '}
+              <h3 className="subsection-heading mb-5">
+                You Receive
               </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                03
-              </span>
-              <h3>
-                AI Adoption
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                04
-              </span>
-              <h3>
-                Premium Brand Positioning
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                05
-              </span>
-              <h3>
-                Scalable Systems
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                06
-              </span>
-              <h3>
-                Leadership Alignment
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                07
-              </span>
-              <h3>
-                Digital Transformation
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                08
-              </span>
-              <h3>
-                Customer Experience
-              </h3>
-            </div>
-            {' '}
-            <div className="outcome-card">
-              <span className="n">
-                09
-              </span>
-              <h3>
-                Enterprise Value Creation
-              </h3>
+              {' '}
+              <ul className="flex flex-col gap-2.5">
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>AI Opportunity Map</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Priority use cases and business impact assessment</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>Technology and architecture recommendations</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>AI Workforce recommendations</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>90-Day AI Transformation Roadmap</span></li>
+                {' '}
+                <li className="check-item"><span className="check">✓</span><span>12-Month transformation roadmap</span></li>
+                {' '}
+              </ul>
+              {' '}
             </div>
             {' '}
           </div>

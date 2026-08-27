@@ -16,25 +16,25 @@ export default function ExecSummary() {
             <div className="font-display font-semibold leading-[1.5] text-[clamp(1.1875rem,0.85rem+2vw,1.625rem)]">
               {' '}
               <p className="text-muted">
-                Every business reaches a point where growth slows.
+                Lost revenue.
               </p>
               {' '}
               <p className="text-muted">
-                Markets evolve.
+                Manual work.
               </p>
               {' '}
               <p className="text-muted">
-                Technology changes.
+                Slow service.
               </p>
               {' '}
               <p className="text-ink">
-                Customers expect more.
+                Low visibility.
               </p>
               {' '}
             </div>
             {' '}
             <p className="mt-8 text-[18px] text-ink-soft leading-relaxed">
-              {' '} The companies that continuously adapt outperform those that don't. Grow Spark partners with founders and leadership teams to redesign businesses for sustainable growth through strategy, technology and execution — as a strategic advisor, not a service provider. {' '}
+              {' '} Most organisations don&apos;t need another tool. They need someone to understand the business, find where AI creates real leverage, and turn that into a working system. {' '}
             </p>
             {' '}
           </div>

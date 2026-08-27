@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <>
       <section id="hero" className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink" aria-label="Introduction">
-        <div className="swiper hero-swiper h-full" data-hero-swiper="" role="region" aria-roledescription="carousel" aria-label="Grow Spark Consulting highlights">
+        <div className="swiper hero-swiper h-full" data-hero-swiper="" role="region" aria-roledescription="carousel" aria-label="McCarthy highlights">
           <div className="swiper-wrapper h-full">
             <div className="swiper-slide relative h-full overflow-hidden" role="group" aria-roledescription="slide" aria-label="1 of 4">
               <img
@@ -32,13 +32,13 @@ export default function Hero() {
                 <div className="mx-auto w-full max-w-[var(--container-wide)] px-6 sm:px-10">
                   <div className="hero-text">
                     <span className="hero-eyebrow">
-                      Business Transformation Consulting
+                      AI Transformation · Agents · Automation · Workforce
                     </span>
                     <h1 className="hero-headline">
-                      Building companies that outperform their competition.
+                      We help organisations become AI-native.
                     </h1>
                     <a href="/strategy/" className="btn btn-hero">
-                      Book Executive Strategy Session
+                      Book an AI Transformation Assessment
                       <ArrowRight className="w-4 h-4 btn-arrow" />
                     </a>
                   </div>
@@ -63,7 +63,7 @@ export default function Hero() {
                       What We Do
                     </span>
                     <h1 className="hero-headline">
-                      AI automation, custom software, and full-stack digital delivery.
+                      AI strategy, intelligent agents, automation, workforce transformation and digital engineering.
                     </h1>
                     <a href="/solutions/" className="btn btn-hero">
                       View All Services
@@ -91,7 +91,7 @@ export default function Hero() {
                       Our Methodology
                     </span>
                     <h1 className="hero-headline">
-                      The Grow Spark Business Transformation Framework™
+                      The McCarthy Transformation System™
                     </h1>
                     <a href="#framework" className="btn btn-hero">
                       Explore The Framework
@@ -116,10 +116,10 @@ export default function Hero() {
                 <div className="mx-auto w-full max-w-[var(--container-wide)] px-6 sm:px-10">
                   <div className="hero-text">
                     <span className="hero-eyebrow">
-                      Case Study
+                      McCarthy AI Lab
                     </span>
                     <h1 className="hero-headline">
-                      Reducing production downtime through a redesigned operating model.
+                      Don&apos;t just read what we build. Use it.
                     </h1>
                     <a href="/rnd/" className="btn btn-hero">
                       R &amp; D

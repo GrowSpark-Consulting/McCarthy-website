@@ -14,12 +14,16 @@ export default function Pillars() {
           <div className="section-head" data-reveal="">
             {' '}
             <span className="eyebrow block mb-3.5">
-              What We Do
+              Capabilities
             </span>
             {' '}
             <h2>
-              Three ways we create value
+              AI Transformation, built to dominate the hierarchy
             </h2>
+            {' '}
+            <p>
+              Five AI capabilities, engineered together — not sold as separate line items.
+            </p>
             {' '}
           </div>
           {' '}
@@ -28,16 +32,16 @@ export default function Pillars() {
             <div className="pillar-card">
               {' '}
               <span className="eyebrow block mb-5">
-                Build
+                01
               </span>
               {' '}
               <h3 className="text-[23px] mb-3.5">
-                Build
+                AI Strategy
               </h3>
               {' '}
               <div className="card-reveal">
                 <p className="text-ink-soft text-[16.5px] leading-relaxed">
-                  Launch and structure new businesses correctly from day one — operating model, first hires, go-to-market — so growth compounds instead of stalling.
+                  Readiness, opportunity mapping, roadmap and governance.
                 </p>
               </div>
               {' '}
@@ -46,16 +50,16 @@ export default function Pillars() {
             <div className="pillar-card">
               {' '}
               <span className="eyebrow block mb-5">
-                Transform
+                02
               </span>
               {' '}
               <h3 className="text-[23px] mb-3.5">
-                Transform
+                AI Agents
               </h3>
               {' '}
               <div className="card-reveal">
                 <p className="text-ink-soft text-[16.5px] leading-relaxed">
-                  Modernise and restructure established businesses to improve margin, resilience and competitive position.
+                  Sales, operations, customer, knowledge and executive agents.
                 </p>
               </div>
               {' '}
@@ -64,16 +68,52 @@ export default function Pillars() {
             <div className="pillar-card">
               {' '}
               <span className="eyebrow block mb-5">
-                Scale
+                03
               </span>
               {' '}
               <h3 className="text-[23px] mb-3.5">
-                Scale
+                Intelligent Automation
               </h3>
               {' '}
               <div className="card-reveal">
                 <p className="text-ink-soft text-[16.5px] leading-relaxed">
-                  Give companies the systems, AI and technology to sustain growth without breaking under it.
+                  Workflow automation, orchestration and system integration.
+                </p>
+              </div>
+              {' '}
+            </div>
+            {' '}
+            <div className="pillar-card">
+              {' '}
+              <span className="eyebrow block mb-5">
+                04
+              </span>
+              {' '}
+              <h3 className="text-[23px] mb-3.5">
+                AI Intelligence
+              </h3>
+              {' '}
+              <div className="card-reveal">
+                <p className="text-ink-soft text-[16.5px] leading-relaxed">
+                  Decision intelligence and executive visibility across the business.
+                </p>
+              </div>
+              {' '}
+            </div>
+            {' '}
+            <div className="pillar-card">
+              {' '}
+              <span className="eyebrow block mb-5">
+                05
+              </span>
+              {' '}
+              <h3 className="text-[23px] mb-3.5">
+                AI Workforce
+              </h3>
+              {' '}
+              <div className="card-reveal">
+                <p className="text-ink-soft text-[16.5px] leading-relaxed">
+                  Corporate AI training, leadership AI, role-based AI and adoption.
                 </p>
               </div>
               {' '}

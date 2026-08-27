@@ -19,7 +19,7 @@ export default function TrustStats() {
             {' '}
             <div>
               {' '}
-              <div className="stat-num" data-count-to="8">
+              <div className="stat-num" data-count-to="12" data-count-suffix="+">
                 0
               </div>
               {' '}
@@ -36,7 +36,19 @@ export default function TrustStats() {
               </div>
               {' '}
               <div className="stat-label text-[16px]">
-                Proprietary Framework
+                Proprietary Transformation System
+              </div>
+              {' '}
+            </div>
+            {' '}
+            <div>
+              {' '}
+              <div className="stat-num" data-count-to="7">
+                0
+              </div>
+              {' '}
+              <div className="stat-label text-[16px]">
+                Transformation System Phases
               </div>
               {' '}
             </div>
@@ -48,31 +60,19 @@ export default function TrustStats() {
               </div>
               {' '}
               <div className="stat-label text-[16px]">
-                Framework Phases
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div>
-              {' '}
-              <div className="stat-num" data-count-to="12" data-count-suffix="+">
-                0
-              </div>
-              {' '}
-              <div className="stat-label text-[16px]">
-                Countries Worked In
+                Core AI Capabilities
               </div>
               {' '}
             </div>
             {' '}
             <div className="col-span-2 sm:col-span-1">
               {' '}
-              <div className="stat-num" data-count-to="3">
+              <div className="stat-num" data-count-to="4">
                 0
               </div>
               {' '}
               <div className="stat-label text-[16px]">
-                Core Disciplines — Strategy, Technology, Execution
+                AI Lab Interactive Demos
               </div>
               {' '}
             </div>
