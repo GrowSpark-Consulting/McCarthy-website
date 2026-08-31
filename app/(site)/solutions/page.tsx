@@ -1,30 +1,43 @@
 import type { Metadata } from 'next';
-import Challenges from '@/components/sections/Challenges';
+import AgenticAi from '@/components/sections/AgenticAi';
+import AiApproach from '@/components/sections/AiApproach';
+import AiTransformationAssessment from '@/components/sections/AiTransformationAssessment';
+import AiTransformationStack from '@/components/sections/AiTransformationStack';
+import SolutionsAiLab from '@/components/sections/SolutionsAiLab';
+import SolutionsAiWorkforce from '@/components/sections/SolutionsAiWorkforce';
 import SolutionsCta from '@/components/sections/SolutionsCta';
 import SolutionsHero from '@/components/sections/SolutionsHero';
 import SolutionsProcess from '@/components/sections/SolutionsProcess';
+import WhereWeApplyAi from '@/components/sections/WhereWeApplyAi';
 
 /**
- * Transcribed from pages/solutions/index.html by scripts/html-to-tsx.py.
- * Element tree, classes, content and metadata are unchanged; only the
- * JSX-required attribute spellings differ from the source markup.
+ * Content rebuilt from ai-solutions.html — the source of truth for this
+ * page. Nav's "AI Solutions" link already points at /solutions/, so this is
+ * that destination. Section components stay on the site's existing design
+ * system (section-head/eyebrow, service-card, process-step/process-node,
+ * grid-hairline, chip, who-list) rather than any markup/CSS from the source
+ * file. Challenges.tsx (the previous "explore by business challenge" grid)
+ * is no longer rendered here — its content doesn't correspond to anything in
+ * ai-solutions.html, and nothing else on the site links to it or to the nine
+ * /solutions/<challenge>/ subpages it pointed at; those routes still build
+ * and are untouched, just without an in-site entry point for now.
  */
 export const metadata: Metadata = {
-  title: "Solutions — By Industry & Business Challenge | Grow Spark Consulting",
-  description: "Explore Grow Spark solutions by industry — manufacturing, healthcare, retail, education and more — or by the business challenge you're solving today, from stalled growth to leadership alignment.",
+  title: "AI Solutions — McCarthy",
+  description: "McCarthy helps organisations move from AI ambition to AI implementation — across strategy, agents, automation, intelligence and governance.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/solutions/" },
   openGraph: {
     type: "website",
-    siteName: "Grow Spark Consulting",
-    title: "Solutions — By Industry & Business Challenge | Grow Spark Consulting",
-    description: "Explore Grow Spark solutions by industry or by the business challenge you're solving today — one consultancy, mapped to your situation.",
+    siteName: "McCarthy",
+    title: "AI Solutions — McCarthy",
+    description: "McCarthy helps organisations move from AI ambition to AI implementation — across strategy, agents, automation, intelligence and governance.",
     url: "https://www.growsparkconsulting.com/solutions/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solutions — By Industry & Business Challenge | Grow Spark Consulting",
-    description: "Explore Grow Spark solutions by industry or by the business challenge you're solving today — one consultancy, mapped to your situation.",
+    title: "AI Solutions — McCarthy",
+    description: "McCarthy helps organisations move from AI ambition to AI implementation — across strategy, agents, automation, intelligence and governance.",
   },
 };
 
@@ -44,7 +57,7 @@ export default function Page() {
           {' '}
           <li>
             <span aria-current="page">
-              Solutions
+              AI Solutions
             </span>
           </li>
           {' '}
@@ -54,9 +67,21 @@ export default function Page() {
       {' '}
       <SolutionsHero />
       {' '}
-      <Challenges />
+      <AiTransformationStack />
+      {' '}
+      <AiApproach />
+      {' '}
+      <AgenticAi />
+      {' '}
+      <WhereWeApplyAi />
       {' '}
       <SolutionsProcess />
+      {' '}
+      <SolutionsAiLab />
+      {' '}
+      <SolutionsAiWorkforce />
+      {' '}
+      <AiTransformationAssessment />
       {' '}
       <SolutionsCta />
       {' '}

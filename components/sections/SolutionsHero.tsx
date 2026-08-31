@@ -1,8 +1,7 @@
 /**
- * Transcribed from sections/solutions-hero.html by scripts/html-to-tsx.py.
- * Server Component: the source partial carries no behaviour of its own,
- * so nothing here needs the browser. Markup, classes, ids, data
- * attributes and content are unchanged from the source.
+ * AI Solutions hero, content from ai-solutions.html's HERO section.
+ * Reuses the interior-page hero pattern (page-hero-heading, accent glow)
+ * this component already carried; only the copy changes.
  */
 export default function SolutionsHero() {
   return (
@@ -16,42 +15,40 @@ export default function SolutionsHero() {
           <div className="max-w-[820px] mx-auto text-center" data-reveal="">
             {' '}
             <span className="eyebrow block mb-5">
-              How We Help
+              McCarthy AI Solutions · AI Transformation
             </span>
             {' '}
             <h1 className="page-hero-heading mb-8 text-balance">
-              {' '} The right solution starts with your situation, not our service list. {' '}
+              {' '} AI that works inside the business. {' '}
             </h1>
             {' '}
-            <div className="lede-statement mb-7">
-              {' '}
-              <p className="text-muted">
-                Every business's constraints are different.
-              </p>
-              {' '}
-              <p className="text-muted">
-                Every industry's playbook is different.
-              </p>
-              {' '}
-              <p className="text-ink">
-                Your solution should be too.
-              </p>
-              {' '}
-            </div>
-            {' '}
             <p className="text-[17px] text-ink-soft leading-relaxed max-w-[640px] mx-auto mb-10">
-              {' '} Grow Spark maps the right mix of AI, software, systems and strategy to your industry and the problem in front of you — not a generic package. Explore by industry, or by the challenge you're solving right now. {' '}
+              {' '} Most organisations don&apos;t need another AI tool. They need a clear strategy, intelligent systems that can actually do work, and an operating model that helps people use them. McCarthy helps organisations move from AI ambition to AI implementation — across strategy, agents, automation, intelligence and governance. {' '}
             </p>
             {' '}
             <div className="flex gap-4 justify-center flex-wrap">
               {' '}
               <a href="/strategy/" className="btn btn-primary">
-                Book Executive Strategy Session
+                Start an AI Transformation Assessment
               </a>
               {' '}
-              <a href="/framework/" className="btn btn-secondary">
-                See Our Framework
+              <a href="/#ai-lab" className="btn btn-secondary">
+                Explore the AI Lab
               </a>
+              {' '}
+            </div>
+            {' '}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-8 font-mono text-[11px] tracking-[0.12em] uppercase text-muted">
+              {' '}
+              <span>Strategy</span>
+              {' '}
+              <span>Agents</span>
+              {' '}
+              <span>Automation</span>
+              {' '}
+              <span>Intelligence</span>
+              {' '}
+              <span>Governance</span>
               {' '}
             </div>
             {' '}

@@ -1,8 +1,7 @@
 /**
- * Transcribed from sections/solutions-cta.html by scripts/html-to-tsx.py.
- * Server Component: the source partial carries no behaviour of its own,
- * so nothing here needs the browser. Markup, classes, ids, data
- * attributes and content are unchanged from the source.
+ * Final CTA from ai-solutions.html — one button, matching the source
+ * exactly (the previous two-button "by industry or by problem" copy this
+ * component carried no longer applies now the page is AI Solutions content).
  */
 export default function SolutionsCta() {
   return (
@@ -12,21 +11,17 @@ export default function SolutionsCta() {
         <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8" data-reveal="">
           {' '}
           <h2 className="text-white cta-heading mb-5">
-            Not sure whether to start by industry or by problem?
+            Find out where AI can change your business.
           </h2>
           {' '}
-          <p className="text-[#9BA1A7] text-[17px] mb-10 max-w-[520px] mx-auto">
-            Tell us where you're stuck. We'll map the right entry point across AI, software and systems — and show you exactly what it takes to get there.
+          <p className="text-[#9BA1A7] text-[17px] mb-10 max-w-[560px] mx-auto">
+            You don&apos;t need to arrive with a list of AI tools. Bring us the business problem, the bottleneck or the opportunity. We&apos;ll help you work out what should happen next.
           </p>
           {' '}
           <div className="flex gap-4 justify-center flex-wrap">
             {' '}
             <a href="/strategy/" className="btn btn-accent">
-              Book Executive Strategy Session
-            </a>
-            {' '}
-            <a href="/solutions/" className="btn btn-secondary btn-on-dark">
-              Explore Our Services
+              Book an AI Transformation Assessment
             </a>
             {' '}
           </div>
