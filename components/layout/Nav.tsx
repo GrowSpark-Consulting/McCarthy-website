@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { PRIMARY_LINKS, WHO_WE_ARE_LINKS, normalizePath } from './navLinks';
+import { PRIMARY_LINKS, ABOUT_LINKS, normalizePath } from './navLinks';
 
 /** nav.js SCROLL_THRESHOLD — the scrollY past which the header goes solid. */
 const SCROLL_THRESHOLD = 48;
@@ -204,32 +204,26 @@ export default function Nav() {
           <a
             href="/"
             className="site-nav__logo logo-lockup shrink-0 lg:justify-self-start"
-            aria-label="Grow Spark Consulting — home"
+            aria-label="McCarthy — home"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo/gsc-white.png"
-              alt="Grow Spark Consulting"
-              className="logo-img logo-img--light"
-              width={1920}
-              height={663}
-              decoding="async"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo/gsc-black.png"
-              alt=""
-              aria-hidden="true"
-              className="logo-img logo-img--dark"
-              width={1920}
-              height={663}
-              decoding="async"
-            />
+            {/*
+              Set in type rather than shipped as artwork. The GSC lockup needed
+              a light and a dark PNG swapped in CSS because the mark was drawn,
+              not coloured; a wordmark inherits .site-nav__logo's existing
+              white/ink states for free, stays crisp at any density, and drops
+              two image requests from the critical path. The PNGs stay on disk.
+            */}
+            <span className="logo-word">
+              McCarthy<i aria-hidden="true">( )</i>
+            </span>
           </a>
 
           <nav
             aria-label="Primary"
-            className="hidden lg:flex items-center gap-5 xl:gap-8 font-body justify-self-center"
+            /* Tighter than the previous gap-5/xl:gap-8: this list carries six
+               labels plus the About trigger where it used to carry five plus
+               one, and the wider gaps pushed it into the CTA at 1024px. */
+            className="hidden lg:flex items-center gap-4 xl:gap-6 font-body justify-self-center"
           >
             {PRIMARY_LINKS.map((link) => (
               <a
@@ -251,6 +245,10 @@ export default function Nav() {
               <button
                 type="button"
                 className="site-nav__trigger flex items-center gap-1.5 font-medium"
+                // The "who-we-are" hook stays although the label now reads
+                // "About": scripts/verify-chrome.mjs drives the mega menu
+                // through this exact id and data attribute, and renaming a
+                // test handle is not worth breaking that suite over.
                 data-mega-trigger="who-we-are"
                 aria-expanded={megaOpen}
                 aria-controls="mega-who-we-are"
@@ -264,7 +262,7 @@ export default function Nav() {
                   }
                 }}
               >
-                Who We Are{' '}
+                About{' '}
                 <ChevronDown
                   className={cx(
                     'w-3.5 h-3.5 transition-transform duration-300',
@@ -288,7 +286,7 @@ export default function Nav() {
                     : 'opacity-0 invisible -translate-y-2',
                 )}
               >
-                {WHO_WE_ARE_LINKS.map((link) => (
+                {ABOUT_LINKS.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
@@ -302,9 +300,17 @@ export default function Nav() {
             </div>
           </nav>
 
-          <div className="hidden lg:flex lg:justify-end lg:col-start-3 lg:justify-self-end">
+          {/* index-7.html's two-button right side: a ghost "Explore AI Lab"
+              beside the primary "Book AI Audit". The ghost only appears at xl —
+              six nav labels plus a dropdown plus two pills do not fit a 1024px
+              bar (index-7.html drops the same button at 900px). Nothing is lost
+              with it hidden: "AI Lab" is still in the nav list itself. */}
+          <div className="hidden lg:flex lg:items-center lg:gap-2.5 lg:justify-end lg:col-start-3 lg:justify-self-end">
+            <a href="/#ai-lab" className="btn site-nav__cta-ghost hidden xl:inline-flex shrink-0">
+              Explore AI Lab
+            </a>
             <a href="/strategy/" className="btn site-nav__cta inline-flex shrink-0">
-              Book Strategy Session
+              Book AI Audit
             </a>
           </div>
 
@@ -369,9 +375,9 @@ export default function Nav() {
             ))}
 
             <details className="drawer-accordion">
-              <summary>Who We Are</summary>
+              <summary>About</summary>
               <div className="drawer-accordion-body">
-                {WHO_WE_ARE_LINKS.map((link) => (
+                {ABOUT_LINKS.map((link) => (
                   <a key={link.href} href={link.href} onClick={closeDrawer}>
                     {link.label}
                   </a>
@@ -379,12 +385,22 @@ export default function Nav() {
               </div>
             </details>
 
+            {/* Both header CTAs, stacked. The drawer is where the ghost button
+                earns its place — it is hidden on every viewport that shows this
+                hamburger, so this is the only route to it below xl. */}
             <a
               href="/strategy/"
               onClick={closeDrawer}
               className="btn btn-primary justify-center mt-6"
             >
-              Book Strategy Session
+              Book AI Audit
+            </a>
+            <a
+              href="/#ai-lab"
+              onClick={closeDrawer}
+              className="btn btn-secondary justify-center mt-3"
+            >
+              Explore AI Lab
             </a>
           </nav>
         </div>

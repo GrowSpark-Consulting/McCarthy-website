@@ -15,7 +15,10 @@ export default function TrustStats() {
             Built On Methodology, Not Claims
           </p>
           {' '}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-y-8 gap-x-6 text-center" data-reveal="">
+          {/* 2 → 3 → 5. Going straight to five columns at 640px gave each stat
+              ~110px, which wrapped "Proprietary Transformation System" onto
+              four lines and left the row ragged against the counters above it. */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-6 text-center" data-reveal="">
             {' '}
             <div>
               {' '}

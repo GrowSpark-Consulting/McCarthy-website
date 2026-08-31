@@ -6,21 +6,47 @@
  */
 export type NavLink = { href: string; label: string };
 
+/**
+ * The six capability labels index-7.html leads with, in its order.
+ *
+ * index-7.html points these at ai-solutions/ai-workforce/ai-lab/ai-audit/
+ * digital .html — five pages that do not exist on this site. Rather than ship
+ * five links to 404s, each label resolves to the real destination that already
+ * covers it: the two with their own routes keep them, and the three that exist
+ * only as home-page sections address those sections directly. The hrefs are
+ * root-absolute (`/#ai-lab`, not `#ai-lab`) because this nav renders on all 27
+ * pages — a bare fragment would look for the section on whatever page the
+ * visitor is already on and silently do nothing on 26 of them.
+ */
 export const PRIMARY_LINKS: NavLink[] = [
   // No Home entry: the logo lockup to the left of this list is the link home,
   // on both the desktop bar and the mobile drawer.
-  { href: '/case-studies/', label: 'Our Works' },
-  { href: '/solutions/', label: 'Solutions' },
-  { href: '/framework/', label: 'Our Framework' },
-  { href: '/rnd/', label: 'R&D' },
+  { href: '/solutions/', label: 'AI Solutions' },
+  { href: '/#ai-workforce', label: 'AI Workforce' },
+  { href: '/#ai-lab', label: 'AI Lab' },
+  { href: '/strategy/', label: 'AI Audit' },
+  { href: '/#mccarthy-digital', label: 'Digital' },
   { href: '/industries/', label: 'Industries' },
 ];
 
-export const WHO_WE_ARE_LINKS: NavLink[] = [
+/**
+ * index-7.html's seventh label, "About", as a dropdown rather than a plain
+ * link. Its six capability labels replaced Our Works / Our Framework / R&D in
+ * the bar above, and Leadership / Alliances / Careers / Contact already lived
+ * behind the old "Who We Are" trigger — so without this list seven existing
+ * pages would still build and still be in the sitemap while being reachable
+ * from no navigation anywhere on the site. /about/ leads it, so the label
+ * still goes where index-7.html's does.
+ */
+export const ABOUT_LINKS: NavLink[] = [
+  { href: '/about/', label: 'About' },
+  { href: '/case-studies/', label: 'Our Works' },
+  { href: '/framework/', label: 'Our Framework' },
+  { href: '/rnd/', label: 'R&D' },
   { href: '/leadership/', label: 'Leadership' },
-  { href: '/contact/', label: 'Contact' },
   { href: '/alliances/', label: 'Alliances' },
   { href: '/careers/', label: 'Careers' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 /**
