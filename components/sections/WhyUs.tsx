@@ -1,150 +1,31 @@
 /**
- * Transcribed from sections/why-us.html by scripts/html-to-tsx.py.
- * Server Component: the source partial carries no behaviour of its own,
- * so nothing here needs the browser. Markup, classes, ids, data
- * attributes and content are unchanged from the source.
+ * "WHAT MAKES McCARTHY DIFFERENT" from about-2.html. Only used on /about/
+ * (the home page has its own copy, WhyMcCarthy.tsx), so safe to repurpose
+ * in place — the source's flat differentiator list fits the twocol/who-list
+ * pattern better than the original card-grid shape this file carried.
  */
 export default function WhyUs() {
   return (
     <>
-      <section className="py-20 sm:py-24 lg:py-28 bg-paper-sunken">
-        {' '}
+      <section className="py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8">
-          {' '}
-          <div className="section-head" data-reveal="">
-            {' '}
-            <span className="eyebrow block mb-3.5">
-              Why Grow Spark
-            </span>
-            {' '}
-            <h2>
-              Why leadership teams choose to work with us
-            </h2>
-            {' '}
+          <div className="max-w-[720px] mx-auto text-center mb-12" data-reveal="">
+            <span className="eyebrow block mb-3.5">What Makes McCarthy Different</span>
+            <h2>Strategy and engineering under one roof.</h2>
           </div>
-          {' '}
-          <div className="grid-hairline grid-cols-1 sm:grid-cols-2" data-reveal="">
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                01
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  Business-First Approach
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    We start with the business problem, not a service catalogue.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                02
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  Independent Recommendations
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    No vendor bias. Our advice serves your outcome, not a platform sale.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                03
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  A Defined Methodology
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    Every engagement runs through the same disciplined framework.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                04
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  Long-Term Partnerships
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    We stay accountable through implementation, not just strategy.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                05
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  Measurable Outcomes
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    Every engagement is scoped against outcomes you can verify.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
-            <div className="why-card">
-              {' '}
-              <span className="num">
-                06
-              </span>
-              {' '}
-              <div className="card-reveal-box">
-                <h3 className="text-[16.5px] font-semibold mb-1.5">
-                  Executive-Level Advisory
-                </h3>
-                <div className="card-reveal">
-                  <p className="text-[16px] text-ink-soft">
-                    We work directly with founders and leadership teams, not delegates.
-                  </p>
-                </div>
-              </div>
-              {' '}
-            </div>
-            {' '}
+          <div className="max-w-[760px] mx-auto rounded-2xl border border-hairline bg-paper-raised p-8" data-reveal="">
+            <ul className="who-list">
+              <li><strong className="text-ink">Business-first</strong> — we begin with the problem, not the tool.</li>
+              <li><strong className="text-ink">AI-native</strong> — AI is central to the transformation, not an afterthought.</li>
+              <li><strong className="text-ink">Built, not just advised</strong> — we take an opportunity from strategy through engineering.</li>
+              <li><strong className="text-ink">Workforce included</strong> — adoption depends on people, not just systems.</li>
+              <li><strong className="text-ink">Industry-aware</strong> — we design systems around sector-specific workflows.</li>
+              <li><strong className="text-ink">Outcome-driven</strong> — we focus on measurable business impact.</li>
+              <li><strong className="text-ink">Practical</strong> — start with the highest-value opportunities and scale from evidence.</li>
+            </ul>
           </div>
-          {' '}
         </div>
-        {' '}
       </section>
-      {' '}
     </>
   );
 }

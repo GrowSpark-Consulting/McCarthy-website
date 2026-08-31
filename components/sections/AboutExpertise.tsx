@@ -1,98 +1,44 @@
-import { Bot, Cloud, Code2, RefreshCw } from 'lucide-react';
+import { Bot, Code2, Users, Workflow, Zap } from 'lucide-react';
 
-/**
- * Transcribed from sections/about-expertise.html by scripts/html-to-tsx.py.
- * Server Component: the source partial carries no behaviour of its own,
- * so nothing here needs the browser. Markup, classes, ids, data
- * attributes and content are unchanged from the source.
- */
 export default function AboutExpertise() {
   return (
     <>
-      <section className="py-20 sm:py-24 lg:py-28">
-        {' '}
+      <section className="py-20 sm:py-24 lg:py-28 bg-paper-sunken">
         <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8">
-          {' '}
           <div className="section-head" data-reveal="">
-            {' '}
-            <span className="eyebrow block mb-3.5">
-              Technology & AI
-            </span>
-            {' '}
-            <h2>
-              Built to work inside modern AI and software stacks
-            </h2>
-            {' '}
-            <p>
-              We're hands-on with the tools behind the recommendations we make — not just advising on transformation, but building it.
-            </p>
-            {' '}
+            <span className="eyebrow block mb-3.5">What We Do</span>
+            <h2>We turn AI potential into business capability.</h2>
+            <p>Our work sits across five connected areas. These aren&apos;t disconnected services — together they form the McCarthy approach to AI transformation.</p>
           </div>
-          {' '}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal="">
-            {' '}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal="">
             <div className="service-card">
-              {' '}
+              <Zap className="service-card__icon" />
+              <h3>AI Strategy</h3>
+              <p>Identify where AI can create meaningful business value and build a roadmap.</p>
+            </div>
+            <div className="service-card">
               <Bot className="service-card__icon" />
-              {' '}
-              <h3>
-                AI Agents & Automation
-              </h3>
-              {' '}
-              <p>
-                Custom agents and workflow automation connected to your real systems, not generic templates.
-              </p>
-              {' '}
+              <h3>AI Agents</h3>
+              <p>Build intelligent systems that can understand, reason, use business context and take action.</p>
             </div>
-            {' '}
             <div className="service-card">
-              {' '}
-              <Cloud className="service-card__icon" />
-              {' '}
-              <h3>
-                Cloud & Enterprise Systems
-              </h3>
-              {' '}
-              <p>
-                Architecture, migration and CRM/ERP implementation built for reliability at scale.
-              </p>
-              {' '}
+              <Workflow className="service-card__icon" />
+              <h3>Intelligent Automation</h3>
+              <p>Redesign workflows and connect AI to real business processes.</p>
             </div>
-            {' '}
             <div className="service-card">
-              {' '}
+              <Users className="service-card__icon" />
+              <h3>AI Workforce</h3>
+              <p>Educate leaders and employees so AI adoption becomes an organisational capability.</p>
+            </div>
+            <div className="service-card">
               <Code2 className="service-card__icon" />
-              {' '}
-              <h3>
-                Modern Software Engineering
-              </h3>
-              {' '}
-              <p>
-                Web, SaaS and mobile product development, engineered to be handed over and maintained.
-              </p>
-              {' '}
+              <h3>Digital Engineering</h3>
+              <p>Build the applications, dashboards, data systems and infrastructure transformation requires.</p>
             </div>
-            {' '}
-            <div className="service-card">
-              {' '}
-              <RefreshCw className="service-card__icon" />
-              {' '}
-              <h3>
-                Legacy Modernization
-              </h3>
-              {' '}
-              <p>
-                Turning manual, paper-based processes into connected digital workflows.
-              </p>
-              {' '}
-            </div>
-            {' '}
           </div>
-          {' '}
         </div>
-        {' '}
       </section>
-      {' '}
     </>
   );
 }
