@@ -45,6 +45,7 @@ const ROUTES = [
   '/solutions/customer-experience/',
   '/solutions/leadership-alignment/',
   '/solutions/premium-brand/',
+  '/ai-workforce/',
   '/industries/',
   '/case-studies/',
   '/rnd/',

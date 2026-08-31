@@ -10,19 +10,20 @@ export type NavLink = { href: string; label: string };
  * The six capability labels index-7.html leads with, in its order.
  *
  * index-7.html points these at ai-solutions/ai-workforce/ai-lab/ai-audit/
- * digital .html — five pages that do not exist on this site. Rather than ship
- * five links to 404s, each label resolves to the real destination that already
- * covers it: the two with their own routes keep them, and the three that exist
- * only as home-page sections address those sections directly. The hrefs are
- * root-absolute (`/#ai-lab`, not `#ai-lab`) because this nav renders on all 27
- * pages — a bare fragment would look for the section on whatever page the
- * visitor is already on and silently do nothing on 26 of them.
+ * digital .html. AI Solutions and AI Workforce are now real routes
+ * (/solutions/, /ai-workforce/) built from their own content sources; AI
+ * Audit and Industries resolve to the existing /strategy/ and /industries/
+ * pages that already cover them; AI Lab and Digital exist only as home-page
+ * sections, so those two address the sections directly. The section hrefs
+ * are root-absolute (`/#ai-lab`, not `#ai-lab`) because this nav renders on
+ * every page — a bare fragment would look for the section on whatever page
+ * the visitor is already on and silently do nothing anywhere else.
  */
 export const PRIMARY_LINKS: NavLink[] = [
   // No Home entry: the logo lockup to the left of this list is the link home,
   // on both the desktop bar and the mobile drawer.
   { href: '/solutions/', label: 'AI Solutions' },
-  { href: '/#ai-workforce', label: 'AI Workforce' },
+  { href: '/ai-workforce/', label: 'AI Workforce' },
   { href: '/#ai-lab', label: 'AI Lab' },
   { href: '/strategy/', label: 'AI Audit' },
   { href: '/#mccarthy-digital', label: 'Digital' },

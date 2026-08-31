@@ -17,7 +17,7 @@ export default function AiWorkforce() {
           <p className="text-[#B9BEC3] text-[16.5px] leading-relaxed mb-8">
             We help organisations educate, train and equip their workforce to work alongside AI — safely, productively and intentionally. This is AI Workforce Transformation, not a ChatGPT training session.
           </p>
-          <a href="/contact/" className="btn btn-accent">
+          <a href="/ai-workforce/" className="btn btn-accent">
             Build Your AI Workforce
             <ArrowRight className="w-4 h-4 btn-arrow" />
           </a>
