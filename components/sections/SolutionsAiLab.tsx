@@ -41,7 +41,7 @@ export default function SolutionsAiLab() {
           </div>
         </div>
         <div className="flex justify-center mt-10" data-reveal="">
-          <a href="/#ai-lab" className="btn btn-accent">
+          <a href="/ai-lab/" className="btn btn-accent">
             Enter the McCarthy AI Lab
             <ArrowRight className="w-4 h-4 btn-arrow" />
           </a>

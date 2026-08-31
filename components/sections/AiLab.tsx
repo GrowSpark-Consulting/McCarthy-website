@@ -47,8 +47,8 @@ export default function AiLab() {
           </article>
         </div>
         <div className="flex justify-center mt-10" data-reveal="">
-          <a href="/contact/" className="btn btn-secondary">
-            Talk to Us About the AI Lab
+          <a href="/ai-lab/" className="btn btn-secondary">
+            Explore the Full AI Lab
           </a>
         </div>
       </div>

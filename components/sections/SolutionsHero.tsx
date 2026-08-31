@@ -32,7 +32,7 @@ export default function SolutionsHero() {
                 Start an AI Transformation Assessment
               </a>
               {' '}
-              <a href="/#ai-lab" className="btn btn-secondary">
+              <a href="/ai-lab/" className="btn btn-secondary">
                 Explore the AI Lab
               </a>
               {' '}

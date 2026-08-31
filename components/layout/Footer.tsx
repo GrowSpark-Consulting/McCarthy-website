@@ -35,7 +35,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/growsparkconsulting"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Grow Spark Consulting on LinkedIn"
+                aria-label="McCarthy on LinkedIn"
                 className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white/70 hover:text-accent-bright hover:border-accent-bright transition-colors duration-200"
               >
                 <Linkedin className="w-4 h-4" />
@@ -44,7 +44,7 @@ export default function Footer() {
                 href="https://www.instagram.com/growsparkconsulting/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Grow Spark Consulting on Instagram"
+                aria-label="McCarthy on Instagram"
                 className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white/70 hover:text-accent-bright hover:border-accent-bright transition-colors duration-200"
               >
                 <Instagram className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function Footer() {
 
           <div>
             <h3 className="font-body text-[12.5px] font-bold uppercase tracking-[0.08em] text-white/50 mb-5">
-              Grow Spark
+              McCarthy
             </h3>
             <div className="flex flex-col gap-3.5">
               <a href="/about/" className="footer-link">About</a>
@@ -112,7 +112,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8 py-7 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="text-[13px] text-white/50">
-            &copy; 2026 Grow Spark Consulting. All rights reserved.
+            &copy; 2026 McCarthy. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <a

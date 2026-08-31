@@ -25,7 +25,7 @@ export default function AiWorkforceTransformation() {
           ))}
         </div>
         <p className="text-center text-ink-soft text-[14px] mt-10" data-reveal="">
-          Built alongside <a href="/solutions/" className="inline-link">McCarthy AI Solutions</a> and demonstrated in the <a href="/#ai-lab" className="inline-link">McCarthy AI Lab</a>.
+          Built alongside <a href="/solutions/" className="inline-link">McCarthy AI Solutions</a> and demonstrated in the <a href="/ai-lab/" className="inline-link">McCarthy AI Lab</a>.
         </p>
       </div>
     </section>

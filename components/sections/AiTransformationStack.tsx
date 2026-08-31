@@ -31,7 +31,7 @@ export default function AiTransformationStack() {
             <p>
               Move beyond assistants that only respond. We design agents that can understand context, reason within defined guardrails, use business knowledge, interact with systems and take action — with human oversight where it matters.
             </p>
-            <a href="/#ai-lab" className="inline-link mt-4">See Agent Demos →</a>
+            <a href="/ai-lab/" className="inline-link mt-4">See Agent Demos →</a>
           </div>
           <div className="service-card">
             <Workflow className="service-card__icon" />

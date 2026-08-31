@@ -306,7 +306,7 @@ export default function Nav() {
               bar (index-7.html drops the same button at 900px). Nothing is lost
               with it hidden: "AI Lab" is still in the nav list itself. */}
           <div className="hidden lg:flex lg:items-center lg:gap-2.5 lg:justify-end lg:col-start-3 lg:justify-self-end">
-            <a href="/#ai-lab" className="btn site-nav__cta-ghost hidden xl:inline-flex shrink-0">
+            <a href="/ai-lab/" className="btn site-nav__cta-ghost hidden xl:inline-flex shrink-0">
               Explore AI Lab
             </a>
             <a href="/strategy/" className="btn site-nav__cta inline-flex shrink-0">
@@ -396,7 +396,7 @@ export default function Nav() {
               Book AI Audit
             </a>
             <a
-              href="/#ai-lab"
+              href="/ai-lab/"
               onClick={closeDrawer}
               className="btn btn-secondary justify-center mt-3"
             >

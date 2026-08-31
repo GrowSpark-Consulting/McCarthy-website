@@ -10,7 +10,7 @@ export default function AiWorkforceLabLink() {
           <p className="text-[#B9BEC3] text-[16.5px] leading-relaxed mb-8">
             Employees shouldn&apos;t just watch AI demonstrations. They should interact with them. We use the McCarthy AI Lab during workshops to demonstrate systems such as the AI CEO Command Center, AI Sales Agent, AI Operations Manager, AI Customer Service, AI Employee Knowledge Hub, AI Finance Intelligence, AI Recruitment Assistant and AI Document Intelligence — then ask employees: &ldquo;Where could something like this exist in my role?&rdquo;
           </p>
-          <a href="/#ai-lab" className="btn btn-accent">
+          <a href="/ai-lab/" className="btn btn-accent">
             Explore the McCarthy AI Lab
             <ArrowRight className="w-4 h-4 btn-arrow" />
           </a>

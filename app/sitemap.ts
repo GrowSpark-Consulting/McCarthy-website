@@ -46,6 +46,7 @@ const ROUTES = [
   '/solutions/leadership-alignment/',
   '/solutions/premium-brand/',
   '/ai-workforce/',
+  '/ai-lab/',
   '/industries/',
   '/case-studies/',
   '/rnd/',
