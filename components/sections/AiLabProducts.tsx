@@ -14,6 +14,17 @@
  * this one button" without any client-side JS. AI Executive Briefing has no
  * source HTML yet, so it keeps no stretched link and stays non-clickable as
  * a card, per instruction.
+ *
+ * The title/labels/body text below are deliberately left un-positioned
+ * (no `relative`, no z-index): plain in-flow content always paints behind
+ * a positioned sibling in the same stacking context regardless of DOM
+ * order, so the stretched link already covers them without needing to
+ * outrank them on z-index. Giving them their own z-index would promote them
+ * into that same stacking competition and — since a higher value wins —
+ * let them swallow clicks meant for the link underneath, which is exactly
+ * what shrank the clickable area before this fix. Only the CTA needs
+ * `relative` + a higher z-index than the link, because it's the one target
+ * that must win the hit-test over the stretched link beneath it.
  */
 const PRODUCTS = [
   {
@@ -121,9 +132,9 @@ export default function AiLabProducts() {
                   aria-label={`View ${p.tag}`}
                 />
               )}
-              <span className="relative z-[1] font-mono text-[10.5px] tracking-[0.09em] uppercase text-accent block mb-2.5">{p.tag}</span>
-              <h3 className="relative z-[1] text-[19px] mb-4">{p.title}</h3>
-              <div className="relative z-[1] flex flex-col gap-3.5">
+              <span className="font-mono text-[10.5px] tracking-[0.09em] uppercase text-accent block mb-2.5">{p.tag}</span>
+              <h3 className="text-[19px] mb-4">{p.title}</h3>
+              <div className="flex flex-col gap-3.5">
                 <div>
                   <span className="font-mono text-[10px] tracking-[0.08em] uppercase text-muted block mb-1">Business Problem</span>
                   <p className="text-ink-soft text-[14px] leading-relaxed">{p.problem}</p>
@@ -141,8 +152,8 @@ export default function AiLabProducts() {
                   <p className="text-ink-soft text-[14px] leading-relaxed">{p.output}</p>
                 </div>
               </div>
-              <div className="relative z-[1] mt-5 pt-5 border-t border-hairline">
-                <a href="/contact/" className="inline-link">Build This For My Business</a>
+              <div className="mt-5 pt-5 border-t border-hairline">
+                <a href="/contact/" className="relative z-10 inline-link">Build This For My Business</a>
               </div>
             </div>
           ))}
