@@ -214,7 +214,7 @@ export default function Nav() {
               two image requests from the critical path. The PNGs stay on disk.
             */}
             <span className="logo-word">
-              McCarthy<i aria-hidden="true">.</i>
+              McCarthy<i aria-hidden="true">( )</i>
             </span>
           </a>
 

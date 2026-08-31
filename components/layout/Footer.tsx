@@ -24,7 +24,7 @@ export default function Footer() {
               {/* Same wordmark as the header (see Nav.tsx); the footer band is
                   always dark, so it only ever needs the on-dark treatment. */}
               <span className="logo-word">
-                McCarthy<i aria-hidden="true">.</i>
+                McCarthy<i aria-hidden="true">( )</i>
               </span>
             </a>
             <p className="text-[16px] text-white/60 max-w-[260px] leading-relaxed mt-5">

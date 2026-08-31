@@ -266,8 +266,8 @@
      than declaring one: #site-header .site-nav__logo already resolves to #fff
      over the dark hero and to --color-ink once scrolled or on any page without
      one, so the mark tracks those two states with no rules of its own. Only the
-     trailing accent dot needs a pair, because its two greens differ by ground.
-     Fluid font-size so it scales with the bar instead of stepping at a
+     trailing accent parens need a pair, because their two greens differ by
+     ground. Fluid font-size so it scales with the bar instead of stepping at a
      breakpoint; nowrap so the name can never break across two lines. */
   .logo-word {
     font-family: var(--font-display);
@@ -278,8 +278,16 @@
     white-space: nowrap;
     color: inherit;
   }
+  /* The "( )" device. letter-spacing is reset to normal because the wordmark's
+     own -0.05em tracking would otherwise pull the two parens together and close
+     the gap that is the whole point of the mark; the small left margin keeps
+     them off the final "y" for the same reason. Lighter weight than the name so
+     the device reads as a mark rather than as two more letters. */
   .logo-word i {
     font-style: normal;
+    font-weight: 500;
+    letter-spacing: normal;
+    margin-left: 0.14em;
     color: var(--color-accent-bright);
   }
   #site-header.is-scrolled .logo-word i,
