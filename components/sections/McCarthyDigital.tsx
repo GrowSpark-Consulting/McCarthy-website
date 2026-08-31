@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
  */
 export default function McCarthyDigital() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-ink overflow-hidden">
+    <section id="mccarthy-digital" className="py-20 sm:py-24 lg:py-28 bg-ink overflow-hidden scroll-mt-24">
       <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
         <div data-reveal="">
           <span className="eyebrow !text-accent-bright block mb-3.5">McCarthy Digital</span>

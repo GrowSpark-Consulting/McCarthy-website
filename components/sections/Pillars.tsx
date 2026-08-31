@@ -1,8 +1,16 @@
+import { ArrowRight } from 'lucide-react';
+
 /**
  * Transcribed from sections/pillars.html by scripts/html-to-tsx.py.
  * Server Component: the source partial carries no behaviour of its own,
  * so nothing here needs the browser. Markup, classes, ids, data
  * attributes and content are unchanged from the source.
+ *
+ * One addition since transcription: index-7.html closes its CAPABILITIES
+ * section with a line placing McCarthy Digital as the engineering layer
+ * beneath all five pillars. It was missing here, which left the five
+ * capabilities reading as the whole offer and the McCarthyDigital section
+ * further down the page arriving unprepared.
  */
 export default function Pillars() {
   return (
@@ -27,7 +35,10 @@ export default function Pillars() {
             {' '}
           </div>
           {' '}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-7" data-reveal="">
+          {/* 1 → 2 → 3 rather than 1 → 3: three pillar cards across a 640px
+              viewport left each one about 190px wide, which broke every
+              two-word heading onto its own line. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7" data-reveal="">
             {' '}
             <div className="pillar-card">
               {' '}
@@ -120,6 +131,15 @@ export default function Pillars() {
             </div>
             {' '}
           </div>
+          {' '}
+          <p className="mt-9 text-ink-soft text-[16.5px] leading-relaxed max-w-[760px]" data-reveal="">
+            McCarthy Digital remains the engineering layer behind all five — applications, dashboards, data, APIs and infrastructure.
+            {' '}
+            <a href="#mccarthy-digital" className="inline-link align-baseline">
+              See McCarthy Digital
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </p>
           {' '}
         </div>
         {' '}

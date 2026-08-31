@@ -16,11 +16,14 @@ export default function HomeFinalCta() {
         <p className="text-[#9BA1A7] text-[17px] mb-10 max-w-[520px] mx-auto">
           What&apos;s happening. Why it&apos;s happening. What AI can change. What it will take to implement it.
         </p>
-        <div className="flex gap-4 justify-center flex-wrap">
-          <a href="/strategy/" className="btn btn-accent">
+        {/* Stacked and full-width on a phone: side by side, the two labels
+            (the first is 38 characters) wrapped to different heights and left
+            the pair visibly uneven. They return to a centred row at sm. */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center sm:flex-wrap items-stretch sm:items-center">
+          <a href="/strategy/" className="btn btn-accent justify-center">
             Book Your AI Transformation Assessment
           </a>
-          <a href="/contact/" className="btn btn-secondary btn-on-dark">
+          <a href="/contact/" className="btn btn-secondary btn-on-dark justify-center">
             Request an Assessment
           </a>
         </div>

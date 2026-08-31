@@ -101,6 +101,27 @@
 
   /* Pressed feedback: cancels the hover lift so a click reads as a tactile
      push rather than the button staying floated while held down. */
+  /* nowrap above keeps buttons on one line, which is right for every label the
+     site had until the home page picked up index-7.html's copy — "Book an AI
+     Transformation Assessment" is ~36 characters and at 13px uppercase runs
+     past a 360px viewport, so the pill overflowed its container rather than
+     growing. Below the sm breakpoint the label is allowed to wrap and the pill
+     centres its own lines; the padding and radius are untouched, so nothing
+     changes for the short labels or on any larger screen. */
+  @media (max-width: 639px) {
+    .btn {
+      white-space: normal;
+      text-align: center;
+      text-wrap: balance;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .btn-hero {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
   .btn:active {
     transform: translateY(0);
   }
@@ -231,10 +252,45 @@
   /* The GSC wordmark, supplied as a black and a white PNG. Both are shipped
      and swapped in CSS rather than recoloured with a filter, so the mark stays
      exactly as drawn on either ground. Height-driven with width:auto, so the
-     ~2.9:1 mark can never be stretched. */
+     ~2.9:1 mark can never be stretched.
+
+     No longer rendered: Nav.tsx and Footer.tsx now set the McCarthy wordmark in
+     type (.logo-word below). These rules and the two PNGs are kept because the
+     image lockup is the fallback if artwork returns. */
   .logo-lockup {
     display: flex;
     align-items: center;
+  }
+
+  /* The McCarthy wordmark, set in type. Deliberately inherits `color` rather
+     than declaring one: #site-header .site-nav__logo already resolves to #fff
+     over the dark hero and to --color-ink once scrolled or on any page without
+     one, so the mark tracks those two states with no rules of its own. Only the
+     trailing accent dot needs a pair, because its two greens differ by ground.
+     Fluid font-size so it scales with the bar instead of stepping at a
+     breakpoint; nowrap so the name can never break across two lines. */
+  .logo-word {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.05rem + 0.62vw, 26px);
+    font-weight: 750;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    white-space: nowrap;
+    color: inherit;
+  }
+  .logo-word i {
+    font-style: normal;
+    color: var(--color-accent-bright);
+  }
+  #site-header.is-scrolled .logo-word i,
+  body:not([data-hero-theme='dark']) #site-header .logo-word i {
+    color: var(--color-accent);
+  }
+
+  /* The footer is always a dark band, so the mark keeps its on-dark pair. */
+  footer .logo-word {
+    font-size: clamp(24px, 1.2rem + 0.8vw, 30px);
+    color: #fff;
   }
   .logo-img {
     height: clamp(26px, 1.5rem + 0.7vw, 34px);
@@ -375,6 +431,36 @@
     padding: 14px 26px;
   }
 
+  /* Secondary header CTA — index-7.html's "ghost" button beside the primary.
+     Transparent with a hairline border, tracking the same two grounds as
+     .site-nav__cta above: a white border over the dark hero, ink once the bar
+     turns paper. Slightly smaller padding than the primary so the pair reads
+     as primary + secondary rather than as two equal buttons. */
+  #site-header .site-nav__cta-ghost {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+    padding: 16px 24px;
+    font-size: var(--fs-nav-cta);
+  }
+  #site-header .site-nav__cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+  }
+  #site-header.is-scrolled .site-nav__cta-ghost,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta-ghost {
+    color: var(--color-ink);
+    border-color: var(--color-hairline-strong);
+  }
+  #site-header.is-scrolled .site-nav__cta-ghost:hover,
+  body:not([data-hero-theme='dark']) #site-header .site-nav__cta-ghost:hover {
+    background: var(--color-paper-sunken);
+    border-color: var(--color-ink);
+  }
+  #site-header.is-scrolled .site-nav__cta-ghost {
+    padding: 13px 22px;
+  }
+
   /* ---------- Hero carousel ---------- */
 
   /* Cinematic letterboxing for centered text: dark top (nav legibility) and
@@ -432,6 +518,53 @@
     text-wrap: balance;
     max-width: 17ch;
     margin: 0 0 clamp(28px, 3vw, 44px);
+  }
+
+  /* Lead paragraph under the hero headline (slide 1 only). Capped in ch like
+     .hero-headline above, and for the same reason: the wrap point should stay
+     put as the fluid type scales rather than rewrapping on wide screens.
+     .hero-headline owns the gap below it, so this only sets its own. */
+  .hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 0.85rem + 0.42vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 52ch;
+    margin: -8px 0 clamp(26px, 2.6vw, 36px);
+  }
+
+  /* The five-capability micro row. A real <ul> — it is a list of the five
+     pillars, not decoration — with the bullets suppressed and hairline
+     dividers standing in, so it reads as one row on desktop and wraps to two
+     or three lines on a phone instead of overflowing. */
+  .hero-micro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    list-style: none;
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+  }
+  .hero-micro li {
+    position: relative;
+  }
+  /* Divider on the marker, not a border, so a wrapped line never begins with a
+     stray rule at its left edge the way a border-left would. */
+  .hero-micro li + li::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    width: 1px;
+    height: 11px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.28);
   }
 
   .btn-hero {

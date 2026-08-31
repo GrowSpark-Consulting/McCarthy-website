@@ -37,10 +37,32 @@ export default function Hero() {
                     <h1 className="hero-headline">
                       We help organisations become AI-native.
                     </h1>
-                    <a href="/strategy/" className="btn btn-hero">
-                      Book an AI Transformation Assessment
-                      <ArrowRight className="w-4 h-4 btn-arrow" />
-                    </a>
+                    {/*
+                      index-7.html's lead paragraph and its five-capability
+                      micro row. Both were missing, so the opening slide named
+                      the five pillars nowhere and the second CTA into the AI
+                      Lab had no equivalent anywhere above the fold.
+                    */}
+                    <p className="hero-lead">
+                      AI strategy, intelligent agents, automation, workforce transformation and digital engineering — built around the way your business actually works.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <a href="/strategy/" className="btn btn-hero">
+                        Book an AI Transformation Assessment
+                        <ArrowRight className="w-4 h-4 btn-arrow" />
+                      </a>
+                      <a href="#ai-lab" className="btn btn-hero">
+                        Explore the McCarthy AI Lab
+                        <ArrowRight className="w-4 h-4 btn-arrow" />
+                      </a>
+                    </div>
+                    <ul className="hero-micro">
+                      <li>AI Strategy</li>
+                      <li>AI Agents</li>
+                      <li>Automation</li>
+                      <li>AI Workforce</li>
+                      <li>Digital Engineering</li>
+                    </ul>
                   </div>
                 </div>
               </div>

@@ -20,16 +20,12 @@ export default function Footer() {
       <div className="mx-auto max-w-[var(--container-page)] px-5 sm:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr] gap-12 lg:gap-10">
           <div>
-            <a href="/" className="logo-lockup mb-5" aria-label="Grow Spark Consulting — home">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo/gsc-white.png"
-                alt="Grow Spark Consulting"
-                className="logo-img"
-                width={1920}
-                height={663}
-                decoding="async"
-              />
+            <a href="/" className="logo-lockup mb-5" aria-label="McCarthy — home">
+              {/* Same wordmark as the header (see Nav.tsx); the footer band is
+                  always dark, so it only ever needs the on-dark treatment. */}
+              <span className="logo-word">
+                McCarthy<i aria-hidden="true">.</i>
+              </span>
             </a>
             <p className="text-[16px] text-white/60 max-w-[260px] leading-relaxed mt-5">
               Business Transformation Consulting for ambitious founders and leadership teams.

@@ -7,6 +7,12 @@ import { ArrowRight } from 'lucide-react';
  * Home-page-only component: Industries.tsx carries the same industry-card
  * visual language but is also rendered on /industries/, so its own eight
  * industries are left untouched there rather than overwritten.
+ *
+ * The section head says "Industries" rather than repeating "Who We Help /
+ * Built for organisations ready to become AI-native": in index-7.html the
+ * organisation types and this tag cloud sit under one heading, so splitting
+ * them into two components printed that heading twice in a row. WhoWeHelp
+ * above keeps the source's wording; this one names what it actually lists.
  */
 export default function WhoWeHelpIndustries() {
   return (
@@ -18,11 +24,11 @@ export default function WhoWeHelpIndustries() {
           <div className="section-head" data-reveal="">
             {' '}
             <span className="eyebrow block mb-3.5">
-              Who We Help
+              Industries
             </span>
             {' '}
             <h2>
-              Built for organisations ready to become AI-native
+              Twelve industries we work across
             </h2>
             {' '}
           </div>
